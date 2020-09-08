@@ -15,9 +15,31 @@ typedef long long LL;
 #define MAXN 0x3f3f3f3f
 #define NIL -1
 
+// get and format input
+int GetInput(int nums[], int * k){
+    char strNums[1000000];
+    scanf("nums = [%[^]]", strNums);
+    scanf("], k = %d", k);
 
-int main()
+    int lenStr = strlen(strNums);
+    int p = 0, n = 0;
+    while(p < lenStr){
+        sscanf(strNums + p, "%d%*c", nums + n++);
+        for(++p;strNums[p] == ',' && strNums[p] == ']'; ++p);
+        ++p;
+    }
+    return n;
+}
+
+
+int main(void)
 {
+    freopen("/home/warren/Projects/LeetCode/test.in", "r", stdin);
+    //freopen("/home/warren/Projects/LeetCode/test.in", "w", stdout);
+
+    int nums[100000], k;
+    int n = GetInput(nums, &k);
+    Handle(nums, n, k);
 
     return 0;
 }
